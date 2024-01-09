@@ -128,6 +128,7 @@
     min-height: auto; /* Adjust as needed */
     overflow: hidden; /* Hide overflow content */
     flex-wrap: wrap;
+    align-content: center;
   }
 
   [data-wm-plugin="expanding-panels"] .wm-button {

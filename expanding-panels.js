@@ -13,6 +13,10 @@ constructor (el) {
    this.collection = this.collection.toLowerCase();
    this.collection = this.collection.trim();
 
+   this.panelCount = this.el.getAttribute('panel-count') || '4';
+   this.panelCount = this.panelCount.toLowerCase();
+   this.panelCount = this.panelCount.trim();
+
    // Whole Panel Link
    this.panelLink = this.el.getAttribute('data-link') || 'false';
    this.panelLink = this.panelLink.toLowerCase();
@@ -33,6 +37,9 @@ constructor (el) {
 
    // Find Parent Section
    this.parentSection = this.el.closest('.content');
+
+  // Upper Panel Limit
+   this.upperLimit = 6;
 
    
   this.init();
@@ -81,21 +88,22 @@ buildExpandingPanels() {
   expandingPanel.classList.add('wm-grid');
   this.el.append(expandingPanel);
   let panel;
-  
-  this.data.items.forEach(item => {
-    panel = `<div class="wm-panel" style="background-image: url(` + item.assetUrl +`);">
-    <div class="vertical-title"><h4>` + item.title + `</h4></div>
-    <div class="wm-content-wrapper">
-    <div class="title"><h4>` + item.title + `</h4></div>
-    <div class="excerpt"><p>` + item.excerpt + `</p></div>
-    <a class="wm-button sqs-block-button-element--medium sqs-button-element--primary sqs-block-button-element" href="` + item.fullUrl + `">View More</a>
-    </div>
-    </div>`
 
-    
-    expandingPanel.insertAdjacentHTML("beforeEnd", panel);
-   
-      });
+  const limit = Math.min(this.panelCount, this.upperLimit);
+
+  for (let i = 0; i < limit; i++) {
+  panel = `
+    <div class="wm-panel" style="background-image: url(${this.data.items[i].assetUrl});">
+      <div class="vertical-title"><h4>${this.data.items[i].title}</h4></div>
+      <div class="wm-content-wrapper">
+        <div class="title"><h4>${this.data.items[i].title}</h4></div>
+        <div class="excerpt"><p>${this.data.items[i].excerpt}</p></div>
+        <a class="wm-button sqs-block-button-element--medium sqs-button-element--primary sqs-block-button-element" href="${this.data.items[i].fullUrl}">View More</a>
+      </div>
+    </div>`;
+
+  expandingPanel.insertAdjacentHTML("beforeEnd", panel);
+}
 
      // Find Panels
    this.panels = document.querySelectorAll('.wm-panel');
@@ -190,4 +198,5 @@ openOnLoad(){
     new ExpandingPanels(instance);
   }
 }())
+
 

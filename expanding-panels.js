@@ -39,7 +39,7 @@ constructor (el) {
    this.parentSection = this.el.closest('.content');
 
   // Upper Panel Limit
-   this.upperLimit = 6;
+   this.upperLimit = 4;
 
    
   this.init();
@@ -96,6 +96,7 @@ buildExpandingPanels() {
     <div class="wm-panel" style="background-image: url(${this.data.items[i].assetUrl});">
       <div class="vertical-title"><h4>${this.data.items[i].title}</h4></div>
       <div class="wm-content-wrapper">
+         <div class="panel-background"></div>
         <div class="title"><h4>${this.data.items[i].title}</h4></div>
         <div class="excerpt"><p>${this.data.items[i].excerpt}</p></div>
         <a class="wm-button sqs-block-button-element--medium sqs-button-element--primary sqs-block-button-element" href="${this.data.items[i].fullUrl}">View More</a>
@@ -198,4 +199,5 @@ openOnLoad(){
     new ExpandingPanels(instance);
   }
 }())
+
 

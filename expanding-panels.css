@@ -14,9 +14,9 @@
   --background-opacity: 0.5;
   --border-radius: 20px;
   --content-width: 80%;
-  --title: inline;
-  --excerpt: inline;
-  --button: inline;
+  --display-title: inline;
+  --display-excerpt: inline;
+  --display-button: inline;
   --mobile-panel-height: 11vh;
 }
 
@@ -81,18 +81,18 @@
 }
 
 [data-wm-plugin="expanding-panels"] .wm-button {
-  display: var(--button);
+  display: var(--display-button);
   z-index: 2;
 }
 
 [data-wm-plugin="expanding-panels"] .title {
-  display: var(--title);
+  display: var(--display-title);
   z-index: 2;
 }
 
 
 [data-wm-plugin="expanding-panels"] .excerpt {
-  display: var(--excerpt);
+  display: var(--display-excerpt);
   z-index: 2;
 }
 

@@ -3,12 +3,6 @@
 * Copyright Will-Myers.com
 */
 
-/**
-* Testing
-* Expanding Panels
-* Copyright Will-Myers.com
-*/
-
 class ExpandingPanels {
 
 constructor (el) {
@@ -50,7 +44,7 @@ this.buttonText = this.buttonText.trim();
  this.parentSection = this.el.closest('.content');
 
 // Upper Panel Limit
- this.upperLimit = 4;
+ this.upperLimit = 6;
 
 
  

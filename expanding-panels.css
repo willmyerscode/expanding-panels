@@ -111,6 +111,7 @@
   transition-delay: calc(var(--transition-duration) / 2);
   padding: 20px;
   width: var(--content-width);
+  justify-items: var(--text-alignment);
 }
 
 

@@ -122,7 +122,7 @@
   filter: brightness(0.4);
 }
 
-[data-wm-plugin="expanding-panels"]:not(.panel-active) .wm-content-wrapper a {
+[data-wm-plugin="expanding-panels"] .wm-panel:not(.panel-active) .wm-content-wrapper a {
   pointer-events: none;
 }
 

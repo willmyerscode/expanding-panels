@@ -122,12 +122,13 @@
   filter: brightness(0.4);
 }
 
-[data-wm-plugin="expanding-panels"] .wm-panel:not(.panel-active) .wm-content-wrapper  {
-pointer-events: none;
+[data-wm-plugin="expanding-panels"] .wm-panel:not(.panel-active) .wm-content-wrapper a {
+  visibility: hidden;
 }
 
-[data-wm-plugin="expanding-panels"] .wm-panel .wm-content-wrapper  {
-  transition: pointer-events 0s linear 2s;
+[data-wm-plugin="expanding-panels"] .wm-panel .wm-content-wrapper a {
+  visibility: visible;
+  transition: visibility 0s linear 0.2s;
 }
 
 

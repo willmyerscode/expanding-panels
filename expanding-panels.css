@@ -111,7 +111,6 @@
   transition-delay: calc(var(--transition-duration) / 2);
   padding: 20px;
   width: var(--content-width);
-  justify-items: var(--text-alignment);
 }
 
 
@@ -122,16 +121,25 @@
 [data-wm-plugin="expanding-panels"] .wm-panel.panel-inactive {
   filter: brightness(0.4);
 }
+
+[data-wm-plugin="expanding-panels"]:not(.panel-active) .wm-content-wrapper a {
+  pointer-events: none;
+}
+
 @media only screen and (min-width: 767px) {
-[data-wm-plugin="expanding-panels"] .wm-panel-link {
-    display:block;
-    cursor:pointer;
-    position:absolute;
-    top:0;
-    height:100%;
-    width:100%;
-    z-index:9;
+  [data-wm-plugin="expanding-panels"] .wm-panel.panel-active .wm-content-wrapper {
+    justify-items: var(--text-alignment);
   }
+  
+  [data-wm-plugin="expanding-panels"] .wm-panel-link {
+      display:block;
+      cursor:pointer;
+      position:absolute;
+      top:0;
+      height:100%;
+      width:100%;
+      z-index:9;
+    }
 }
 
 @media screen and (max-width: 767px) {

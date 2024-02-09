@@ -122,9 +122,14 @@
   filter: brightness(0.4);
 }
 
-[data-wm-plugin="expanding-panels"] .wm-panel:not(.panel-active) .wm-content-wrapper a {
-  pointer-events: none;
+[data-wm-plugin="expanding-panels"] .wm-panel:not(.panel-active) .wm-content-wrapper  {
+pointer-events: none;
 }
+
+[data-wm-plugin="expanding-panels"] .wm-panel .wm-content-wrapper  {
+  transition: pointer-events 0s linear 2s;
+}
+
 
 @media only screen and (min-width: 767px) {
   [data-wm-plugin="expanding-panels"] .wm-panel.panel-active .wm-content-wrapper {

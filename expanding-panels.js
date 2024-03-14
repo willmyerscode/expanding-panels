@@ -99,9 +99,11 @@ let panel;
 const limit = Math.min(this.panelCount, this.upperLimit);
 
 for (let i = 0; i < limit; i++) {
-  
+
+const focalPoint = this.data.items[i].mediaFocalPoint ? `${this.data.items[i].mediaFocalPoint.x * 100}% ${this.data.items[i].mediaFocalPoint.y * 100}%` : '50% 50%';
+    
 panel = `
-  <div class="wm-panel" style="background-image: url(${this.data.items[i].assetUrl});">
+   <div class="wm-panel" style="background-image: url(${this.data.items[i].assetUrl}); background-position:${focalPoint}">
     <div class="vertical-title"><h4>${this.data.items[i].title}</h4></div>
     <div class="wm-content-wrapper">
        <div class="panel-background"></div>
@@ -208,4 +210,3 @@ if (this.panels.length > 0) {
     new ExpandingPanels(instance);
   }
 }())
-

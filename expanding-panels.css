@@ -45,6 +45,7 @@
   text-align: var(--text-alignment);
   align-self: var(--vertical-alignment);
   position: relative;
+  box-sizing: border-box;
 }
 
 [data-wm-plugin="expanding-panels"] .panel-background {

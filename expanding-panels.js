@@ -34,7 +34,6 @@ class ExpandingPanels {
 
     // Button Text
     this.buttonText = this.el.getAttribute('data-text') || 'View More';
-    this.buttonText = this.buttonText.toLowerCase();
     this.buttonText = this.buttonText.trim();
 
     this.collectionJSON = this.collection + '?format=json&date=' + new Date().getTime();

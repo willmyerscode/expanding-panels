@@ -34,7 +34,7 @@
   display: grid;
   padding: 20px;
   align-items: center;
-  justify-content: var(--content-alignment);
+  justify-items: var(--content-alignment);
   flex: 1;
   transition: var(--transition-duration);
   height: var(--panel-height);

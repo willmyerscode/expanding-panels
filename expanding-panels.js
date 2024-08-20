@@ -1,6 +1,6 @@
 /**
 * Expanding Panels
-* Copyright Will-Myers.com
+* Copyright Abi Bacon & Will-Myers.com
 */
 
 class ExpandingPanels {
@@ -34,6 +34,7 @@ class ExpandingPanels {
 
     // Button Text
     this.buttonText = this.el.getAttribute('data-text') || 'View More';
+    //this.buttonText = this.buttonText.toLowerCase();
     this.buttonText = this.buttonText.trim();
 
     this.collectionJSON = this.collection + '?format=json&date=' + new Date().getTime();
@@ -88,7 +89,9 @@ class ExpandingPanels {
 
     for (let i = 0; i < limit; i++) {
 
-      const focalPoint = this.data.items[i].mediaFocalPoint ? `${this.data.items[i].mediaFocalPoint.x * 100}% ${this.data.items[i].mediaFocalPoint.y * 100}%` : '50% 50%';
+      if (!this.data.items[i]) break
+
+      const focalPoint = this.data.items[i]?.mediaFocalPoint ? `${this.data.items[i].mediaFocalPoint.x * 100}% ${this.data.items[i].mediaFocalPoint.y * 100}%` : '50% 50%';
 
       panel = `
    <div class="wm-panel" style="background-image: url(${this.data.items[i].assetUrl}); background-position:${focalPoint}">

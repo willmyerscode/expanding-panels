@@ -192,6 +192,10 @@
    min-height: fit-content;
    transition: var(--transition-duration);
  }
+
+[data-wm-plugin="expanding-panels"] .wm-panel:not(.panel-active) .wm-content-wrapper {
+  display: none;
+}
   
 }
 

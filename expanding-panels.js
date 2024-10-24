@@ -1,6 +1,6 @@
 /**
 * Expanding Panels
-* Copyright Abi Bacon & Will-Myers.com
+* Copyright Will-Myers.com
 */
 
 class ExpandingPanels {
@@ -143,7 +143,7 @@ class ExpandingPanels {
 
   addPanelLink(){
     if (this.panelLink.includes("true")) {
-      this.panels.forEach((panel, index) => {
+      this.instancePanels.forEach((panel, index) => {
         let wholePanelLink = `<a class="wm-panel-link" href="${this.data.items[index].url}"></a>`;
         panel.insertAdjacentHTML("afterBegin", wholePanelLink);
       });

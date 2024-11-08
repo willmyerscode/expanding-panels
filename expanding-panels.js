@@ -1,8 +1,3 @@
-/**
-* Expanding Panels
-* Copyright Will-Myers.com
-*/
-
 class ExpandingPanels {
 
   constructor (el) {
@@ -36,6 +31,11 @@ class ExpandingPanels {
     this.buttonText = this.el.getAttribute('data-text') || 'View More';
     //this.buttonText = this.buttonText.toLowerCase();
     this.buttonText = this.buttonText.trim();
+
+    // Add new window target attribute handling
+    this.tabTarget = this.el.getAttribute('data-tab') || 'same';
+    this.tabTarget = this.tabTarget.toLowerCase();
+    this.tabTarget = this.tabTarget.trim();
 
     this.collectionJSON = this.collection + '?format=json&date=' + new Date().getTime();
     this.collectionData;
@@ -100,10 +100,13 @@ class ExpandingPanels {
        <div class="panel-background"></div>
       <div class="title"><h4>${this.data.items[i].title}</h4></div>
       <div class="excerpt"><p>${this.data.items[i].excerpt}</p></div>
-      <a class="wm-button sqs-block-button-element--medium sqs-button-element--primary sqs-block-button-element" href="${this.data.items[i].url}">${this.buttonText}</a>
+      <a class="wm-button sqs-block-button-element--medium sqs-button-element--primary sqs-block-button-element" 
+         href="${this.data.items[i].url}"
+         ${this.tabTarget === 'new' ? 'target="_blank"' : ''}>${this.buttonText}</a>
     </div>
   </div>`;
-
+      
+    
       expandingPanel.insertAdjacentHTML("beforeEnd", panel);
     }
 
@@ -126,6 +129,7 @@ class ExpandingPanels {
             otherPanel.classList.remove('panel-active');
             otherPanel.classList.add('panel-inactive');
           }
+          
         });
       });
 

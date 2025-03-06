@@ -195,7 +195,7 @@
 }
 
 
-@media only screen and (max-width: 766px) {
+@media only screen and (min-width: 766px) {
 [data-wm-plugin="expanding-panels"] .wm-grid.vertical {
 flex-direction: column;
 }

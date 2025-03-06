@@ -1,3 +1,9 @@
+/**
+* Testing
+* Expanding Panels
+* Copyright Will-Myers.com
+*/
+
 class ExpandingPanels {
 
   constructor (el) {
@@ -31,6 +37,11 @@ class ExpandingPanels {
     this.buttonText = this.el.getAttribute('data-text') || 'View More';
     //this.buttonText = this.buttonText.toLowerCase();
     this.buttonText = this.buttonText.trim();
+
+    // Layout
+    this.layout = this.el.getAttribute('data-layout') || 'Horizontal';
+    this.layout = this.layout.toLowerCase();
+    this.layout = this.layout.trim();
 
     // Add new window target attribute handling
     this.tabTarget = this.el.getAttribute('data-tab') || 'same';
@@ -83,6 +94,11 @@ class ExpandingPanels {
     let expandingPanel = document.createElement('div');
     expandingPanel.classList.add('wm-grid');
     this.el.append(expandingPanel);
+
+    if (this.layout === 'vertical') {
+      expandingPanel.classList.add('vertical');
+    }
+    
     let panel;
 
     const limit = Math.min(this.panelCount, this.upperLimit);

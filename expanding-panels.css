@@ -14,9 +14,9 @@
   --background-opacity: 0.5;
   --border-radius: 20px;
   --content-width: 80%;
-  --display-title: inline;
-  --display-excerpt: inline;
-  --display-button: inline;
+  --display-title: block;
+  --display-excerpt: block;
+  --display-button: inline-block;
   --mobile-panel-height: 11vh;
 }
 
@@ -79,6 +79,7 @@
 
 [data-wm-plugin="expanding-panels"] .wm-content-wrapper {
   opacity: 0;
+  padding: 20px;
 }
 
 [data-wm-plugin="expanding-panels"] .wm-button {
@@ -110,12 +111,11 @@
   display: grid;
   transition: opacity var(--transition-duration);
   transition-delay: calc(var(--transition-duration) / 2);
-  padding: 20px;
   width: var(--content-width);
 }
 
 
-[data-wm-plugin="expanding-panels"] .wm-panel.panel-active{
+[data-wm-plugin="expanding-panels"] .wm-panel.panel-active {
   flex: var(--active-width);
 }
 
@@ -192,11 +192,26 @@
    min-height: fit-content;
    transition: var(--transition-duration);
  }
-
-[data-wm-plugin="expanding-panels"] .wm-panel:not(.panel-active) .wm-content-wrapper {
-  display: none;
 }
-  
+
+
+@media only screen and (max-width: 766px) {
+[data-wm-plugin="expanding-panels"] .wm-grid.vertical {
+flex-direction: column;
+}
+
+[data-wm-plugin="expanding-panels"] .wm-grid.vertical .vertical-title > * {
+writing-mode: unset;
+transform: none;
+}
+
+[data-wm-plugin="expanding-panels"] .wm-grid.vertical .wm-panel {
+min-height: var(--desktop-vertical-closed-height, 20vh);
+}
+
+[data-wm-plugin="expanding-panels"] .wm-grid.vertical .wm-panel.panel-active {
+min-height: var(--desktop-vertical-active-height, 60vh);
+}
 }
 
 .sqs-edit-mode-active .code-block [data-wm-plugin="expanding-panels"] {

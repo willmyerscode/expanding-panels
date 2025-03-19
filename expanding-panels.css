@@ -6,18 +6,19 @@
 .wm-expanding-panels {
   --panel-height: 60vh;
   --active-width: 2;
-  --content-alignment: start;
+  --horizontal-alignment: start;
   --text-alignment: start;
-  --vertical-alignent: center;
+  --vertical-alignment: center;
   --transition-duration: 1000ms;
   --background: var(--siteBackgroundColor);
   --background-opacity: 0.5;
   --border-radius: 20px;
-  --content-width: 80%;
+  --content-width: auto;
   --display-title: block;
   --display-excerpt: block;
   --display-button: inline-block;
   --mobile-panel-height: 11vh;
+  --active-mobile-panel-height: 60vh;
 }
 
 
@@ -33,19 +34,32 @@
   background-size: cover;
   display: grid;
   padding: 20px;
-  align-items: center;
-  justify-items: var(--content-alignment);
   flex: 1;
   transition: var(--transition-duration);
   height: var(--panel-height);
   position: relative;
+  overflow: hidden;
+  align-items: center;
 }
 
 [data-wm-plugin="expanding-panels"] .wm-content-wrapper {
   text-align: var(--text-alignment);
-  align-self: var(--vertical-alignment);
-  position: relative;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
+  display: grid;
+  place-items: var(--vertical-alignment) var(--horizontal-alignment);
+  opacity: 0;
+  padding: 20px;
+}
+
+[data-wm-plugin="expanding-panels"] .wm-content {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  width: var(--content-width);
 }
 
 [data-wm-plugin="expanding-panels"] .panel-background {
@@ -56,6 +70,8 @@
   opacity: var(--background-opacity);
   position: absolute;
   border-radius: var(--border-radius);
+  top: 0;
+  left: 0;
 }
 
 [data-wm-plugin="expanding-panels"] .vertical-title {
@@ -76,42 +92,34 @@
   opacity: 0;
 }
 
-
-[data-wm-plugin="expanding-panels"] .wm-content-wrapper {
-  opacity: 0;
-  padding: 20px;
-}
-
 [data-wm-plugin="expanding-panels"] .wm-button {
   display: var(--display-button);
   z-index: 2;
+  position: relative;
+  width: fit-content;
 }
 
 [data-wm-plugin="expanding-panels"] .title {
   display: var(--display-title);
   z-index: 2;
+  position: relative;
 }
 
 
 [data-wm-plugin="expanding-panels"] .excerpt {
   display: var(--display-excerpt);
   z-index: 2;
+  position: relative;
 }
 
 [data-wm-plugin="expanding-panels"] .title h4 {
   margin: 0px;
 }
 
-[data-wm-plugin="expanding-panels"] .wm-button {
-  width: fit-content;
-}
-
 [data-wm-plugin="expanding-panels"] .wm-panel.panel-active .wm-content-wrapper {
   opacity: 1;
-  display: grid;
   transition: opacity var(--transition-duration);
   transition-delay: calc(var(--transition-duration) / 2);
-  width: var(--content-width);
 }
 
 
@@ -134,10 +142,6 @@
 
 
 @media only screen and (min-width: 767px) {
-  [data-wm-plugin="expanding-panels"] .wm-panel.panel-active .wm-content-wrapper {
-    justify-items: var(--text-alignment);
-  }
-  
   [data-wm-plugin="expanding-panels"] .wm-panel-link {
       display:block;
       cursor:pointer;
@@ -157,8 +161,8 @@
   [data-wm-plugin="expanding-panels"] .wm-panel {
     display: flex;
     flex-direction: column;
-    min-height: var(--mobile-panel-height); /* Adjust as needed */
-    overflow: hidden; /* Hide overflow content */
+    min-height: var(--mobile-panel-height);
+    overflow: hidden;
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
@@ -182,14 +186,15 @@
 }
 [data-wm-plugin="expanding-panels"] .wm-panel .wm-content-wrapper {
     visibility: hidden;
-    text-align: center;
+    text-align: var(--text-alignment);
   }
 
  [data-wm-plugin="expanding-panels"] .wm-panel.panel-active .wm-content-wrapper {
    visibility: visible;
   }
+  
  [data-wm-plugin="expanding-panels"] .wm-panel.panel-active {
-   min-height: fit-content;
+   min-height: var(--active-mobile-panel-height);
    transition: var(--transition-duration);
  }
 }
@@ -206,11 +211,11 @@ transform: none;
 }
 
 [data-wm-plugin="expanding-panels"] .wm-grid.vertical .wm-panel {
-min-height: var(--desktop-vertical-closed-height, 20vh);
+  min-height: var(--desktop-vertical-closed-height, 20vh);
 }
 
 [data-wm-plugin="expanding-panels"] .wm-grid.vertical .wm-panel.panel-active {
-min-height: var(--desktop-vertical-active-height, 60vh);
+  min-height: var(--desktop-vertical-active-height, 40vh);
 }
 }
 

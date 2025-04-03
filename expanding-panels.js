@@ -8,6 +8,7 @@ class ExpandingPanels {
 
   constructor (el) {
     this.el = el;
+    el.dataset.loadingState = 'loading';
 
     // Get Data Attributes
     this.collection = this.el.getAttribute('data-source');
@@ -57,6 +58,7 @@ class ExpandingPanels {
     // Upper Panel Limit
     this.upperLimit = 10;
     this.init();
+    el.dataset.loadingState = 'initialized';
   }
 
   async init () {
@@ -166,7 +168,7 @@ class ExpandingPanels {
   addPanelLink(){
     if (this.panelLink.includes("true")) {
       this.instancePanels.forEach((panel, index) => {
-        let wholePanelLink = `<a class="wm-panel-link" href="${this.data.items[index].url}"></a>`;
+        let wholePanelLink = `<a class="wm-panel-link" href="${this.data.items[index].url}" ${this.tabTarget === 'new' ? 'target="_blank"' : ''}></a>`;
         panel.insertAdjacentHTML("afterBegin", wholePanelLink);
       });
     }
@@ -210,10 +212,18 @@ class ExpandingPanels {
 }
 (function(){
   // Find All Instances
-  let allInstances = document.querySelectorAll('[data-wm-plugin="expanding-panels"]');
-
-  // Loop Through All Instances
-  for (let instance of allInstances) {
-    new ExpandingPanels(instance);
+  const initExpandingPanels = () => {
+    let allInstances = document.querySelectorAll('[data-wm-plugin="expanding-panels"]:not([data-loading-state])');
+  
+    // Loop Through All Instances
+    for (let instance of allInstances) {
+      new ExpandingPanels(instance);
+    }
   }
+
+  window.wmExpandingPanel = {
+   init: () => initExpandingPanels(),
+  }
+
+  window.wmExpandingPanel.init();
 }())

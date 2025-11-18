@@ -12,7 +12,6 @@ class ExpandingPanels {
 
     // Get Data Attributes
     this.collection = this.el.getAttribute('data-source');
-    this.collection = this.collection.toLowerCase();
     this.collection = this.collection.trim();
 
     this.panelCount = this.el.getAttribute('panel-count') || '4';
